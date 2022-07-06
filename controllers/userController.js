@@ -45,7 +45,7 @@ module.exports = {
       )
       .then(() =>
         res.json({
-          message: "user and associated thoughts deleted successfully",
+          message: `user and associated thoughts deleted successfully`,
         })
       )
 
@@ -73,10 +73,9 @@ module.exports = {
   // Add a friend to a user
   addFriend(req, res) {
     console.log("adding friend");
-    console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.body } },
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
